@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14 # Specify the Node.js version you want to use
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+
+  pre_build:
+    commands:
+      - echo Pre-build stage...
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the React app...
+      - npm run build
+
+artifacts:
+  files:
+    - build/**/*
+  base-directory: build
+
+cache:
+  paths:
+    - node_modules/**/*
